@@ -1,4 +1,4 @@
-from ..ailogic import montecarlo_ai, sample_ai, random_ai
+from ..AI import montecarlo_ai, sample_ai, random_ai
 
 playerAiList = [
     #[0] プレイヤー0（先行）のAi1

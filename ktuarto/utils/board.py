@@ -1,4 +1,5 @@
 from . import piece
+
 import copy
 import numpy as np
 
