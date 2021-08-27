@@ -16,7 +16,7 @@ on:
         default: 1
 
 jobs:
-  Prepare-Ktuarto:
+  Buttle-Between-AIs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -30,10 +30,6 @@ jobs:
       - name: Build Ktuarto
         run: |
           poetry install
-  Buttle-Between-AIs:
-    runs-on: ubuntu-latest
-    needs: Prepare-Ktuarto
-    steps:
       - name: Run Ktuarto
         run: |
           poetry run ktuarto run ${{ github.event.inputs.your_ai }} ${{ github.event.inputs.opponent_ai }} --matches ${{ github.event.inputs.matches }}
