@@ -16,7 +16,7 @@ on:
         default: 1
 
 jobs:
-  Prepare Ktuarto:
+  Prepare-Ktuarto:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
