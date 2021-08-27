@@ -17,4 +17,4 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-ktuarto = "ktuarto.scripts.run:multiprocRun"
+ktuarto = "ktuarto.scripts.run:cli"
