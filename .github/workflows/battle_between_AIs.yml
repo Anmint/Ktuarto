@@ -34,6 +34,7 @@ jobs:
           poetry install
   Buttle-Between-AIs:
     runs-on: ubuntu-latest
+    needs: Prepare-Ktuarto
     steps:
       - name: Run Ktuarto
         run: |
