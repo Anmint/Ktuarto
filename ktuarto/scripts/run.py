@@ -7,6 +7,9 @@ arg3:ログのファイル出力 '1'を入力でログファイル生成 未入�
 """
 
 from ..utils import gamemain, util
+
+from ..AI.sample_ai import SampleAi
+from ..AI.random_ai import RandomAi, RandomAi2, RandomAi3
 from ..AI.montecarlo_ai import Montecarlo
 
 import click
