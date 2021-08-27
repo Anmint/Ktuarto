@@ -1,0 +1,40 @@
+name: Buttle between AIs
+on:
+  workflow_dispatch:
+    inputs:
+      your_ai:
+        description: 'Your AI'
+        required: true
+        default: 'RandomAi'
+      opponent_ai:
+        description: "Opponent AI"
+        required: true
+        default: 'RandomAi2'
+      matches:
+        description: "Number of matches"
+        required: false 
+        default: 1
+
+jobs:
+  Prepare Ktuarto:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Setup Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Install Poetry
+        run: |
+          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+      - name: Build Ktuarto
+        run: |
+          poetry install
+  Buttle-Between-AIs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Ktuarto
+        run: |
+          poetry run ktuarto run ${{ github.event.inputs.your_ai }} ${{ github.event.inputs.opponent_ai }} --matches ${{ github.event.inputs.matches }}
