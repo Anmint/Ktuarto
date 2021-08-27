@@ -9,19 +9,18 @@ arg3:ログのファイル出力 '1'を入力でログファイル生成 未入�
 from ..utils import gamemain, util
 from ..AI import montecarlo_ai
 
+import click
 import sys
 import time
 import math
 from datetime import datetime
-from multiprocessing import pool
-import multiprocessing as multi
 
-def singleprocRun(num = 1):
-    gamemain.winningPercentageRun(num)
+@click.command()
+@click.option('--matches', default = 1, help = 'Number of matches (default: 1)')
 
-def multiprocRun(num = 1):
+def multiprocRun(matches):
     st = time.time()
-    num = math.ceil(num/2)#勝敗の均等性をとるため、1回の処理で先行後攻の2回は必ずまわす。よって、2で割って切り上げた回数を指定。
+    matches = math.ceil(matches/2)#勝敗の均等性をとるため、1回の処理で先行後攻の2回は必ずまわす。よって、2で割って切り上げた回数を指定。
     
     ai1 = montecarlo_ai.Montecarlo()
     ai1.param.ucb1_c = 0.8
@@ -32,31 +31,18 @@ def multiprocRun(num = 1):
     ai4 = montecarlo_ai.Montecarlo()
     ai4.param.ucb1_c = 1.2
 
-    #マルチプロセス実行
-    p = pool.Pool(multi.cpu_count()-1)
-    paramlist = [
-        #一つのプロセス実行回数、AI1、AI2
-        #[2,None,None] for i in range(num)
-        [1,None,None] for i in range(num)
-        #[50,ai1,None],
-        #[50,ai2,None],
-        #[50,ai3,None],
-        #[50,ai4,None],
-    ]
-    result = p.map(gamemain.winningPercentageRunMultiprocess, paramlist)
-    p.close()
+    result = gamemain.winningPercentageRunMultiprocess([2, ai1, ai2])
 
     #ログ出力
     total = 0
     win1 = 0
     win2 = 0
     draw = 0
-    for r,p in zip(result,paramlist):
-        total += r['対戦回数：']
-        win1 += r['AI1勝利数：']
-        win2 += r['AI2勝利数：']
-        draw += r['引き分け数：']
-        util.p.print(str(r))
+    total += result['対戦回数：']
+    win1 += result['AI1勝利数：']
+    win2 += result['AI2勝利数：']
+    draw += result['引き分け数：']
+    util.p.print(str(result))
 
     util.p.print('')
     util.p.print('len result:'+str(len(result)))
