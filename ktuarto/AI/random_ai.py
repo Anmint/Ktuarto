@@ -1,7 +1,7 @@
 from . import base_ai
-from ..gameobject import board, box, piece
+from ..utils import board, box, piece, util
+
 import numpy as np
-from ..gameutil import util
 
 class RandomAi(base_ai.BaseAi):
     """

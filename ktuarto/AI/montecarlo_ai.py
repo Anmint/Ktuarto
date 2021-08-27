@@ -1,7 +1,7 @@
-from . import base_ai, ucb1
-from ..gameobject import board, box, piece
+from . import base_ai
+from ..utils import ucb1, board, box, piece, util
+
 import numpy as np
-from ..gameutil import util
 import time
 
 class Parameter:

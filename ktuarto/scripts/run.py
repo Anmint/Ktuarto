@@ -6,15 +6,15 @@ arg2:マルチプロセスの実行 'm'を入力でマルチプロセス 未入�
 arg3:ログのファイル出力 '1'を入力でログファイル生成 未入力 or '1'以外でログファイルを生成しない
 """
 
-from quarto.gamesys import gamemain
-import time
-from quarto.gameutil import util
-from datetime import datetime
+from ..utils import gamemain, util
+from ..AI import montecarlo_ai
+
 import sys
+import time
+import math
+from datetime import datetime
 from multiprocessing import pool
 import multiprocessing as multi
-import math
-from quarto.ailogic import montecarlo_ai
 
 def singleprocRun(num = 1):
     gamemain.winningPercentageRun(num)

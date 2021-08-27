@@ -1,8 +1,6 @@
-from ..gameobject import board, box, piece
-from . import gameplayer
-from . import gameplayerinfo
+from . import board, box, piece, gameplayer, gameplayerinfo, util
+
 import numpy as np
-from ..gameutil import util
 import time
 
 class GameMain:

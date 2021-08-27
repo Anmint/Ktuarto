@@ -1,5 +1,5 @@
-from ..ailogic import base_ai
-from ..gameobject import board, box, piece
+from . import board, box, piece
+from ..AI import base_ai
 
 class GamePlayer:
     def __init__(self, ai=None):

@@ -1,5 +1,5 @@
 from . import base_ai
-from ..gameobject import board, box, piece
+from ..utils import board, box, piece
 
 class SampleAi(base_ai.BaseAi):
     """
