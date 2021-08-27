@@ -1,0 +1,19 @@
+name: GitHub Actions Demo
+on:
+  workflow_dispatch:
+    inputs:
+      your_ai:
+        description: 'Your AI'
+        required: true
+        default: 'sample_ai'
+      opponents_ai:
+        description: "Opponent's AI"
+        required: true
+        default: 'sample_ai2'
+
+jobs:
+  Show-AIs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Your AI is ${{ github.event.inputs.your_ai }}"
+      - run: echo "Opponent's AI is ${{ github.event.inputs.opponents_ai }}"
