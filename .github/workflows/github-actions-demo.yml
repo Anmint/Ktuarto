@@ -15,5 +15,5 @@ jobs:
   Show-AIs:
     runs-on: ubuntu-latest
     steps:
-      - run: "Your AI is ${{ github.event.inputs.your_ai }}"
-      - run: "Opponent's AI is ${{ github.event.inputs.opponents_ai }}"
+      - run: echo "Your AI is ${{ github.event.inputs.your_ai }}"
+      - run: echo "Opponent's AI is ${{ github.event.inputs.opponents_ai }}"
