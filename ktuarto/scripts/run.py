@@ -7,7 +7,7 @@ arg3:ログのファイル出力 '1'を入力でログファイル生成 未入�
 """
 
 from ..utils import gamemain, util
-from ..AI import montecarlo_ai
+from ..AI.montecarlo_ai import Montecarlo
 
 import click
 import sys
@@ -16,22 +16,21 @@ import math
 from datetime import datetime
 
 @click.command()
-@click.option('--matches', default = 1, help = 'Number of matches (default: 1)')
+@click.argument('your_ai')
+@click.argument('opponent_ai')
+@click.option('--matches', type = int, default = 1, help = 'Number of matches (default: 1)')
 
-def multiprocRun(matches):
+def multiprocRun(your_ai, opponent_ai, matches):
     st = time.time()
     matches = math.ceil(matches/2)#勝敗の均等性をとるため、1回の処理で先行後攻の2回は必ずまわす。よって、2で割って切り上げた回数を指定。
-    
-    ai1 = montecarlo_ai.Montecarlo()
-    ai1.param.ucb1_c = 0.8
-    ai2 = montecarlo_ai.Montecarlo()
-    ai2.param.ucb1_cucb1_c = 0.9
-    ai3 = montecarlo_ai.Montecarlo()
-    ai3.param.ucb1_c = 1.1
-    ai4 = montecarlo_ai.Montecarlo()
-    ai4.param.ucb1_c = 1.2
 
-    result = gamemain.winningPercentageRunMultiprocess([2, ai1, ai2])
+    your_ai_klass = globals()[your_ai]
+    your_ai_instance = your_ai_klass()
+
+    opponent_ai_klass = globals()[opponent_ai]
+    opponent_ai_instance = opponent_ai_klass()
+
+    result = gamemain.winningPercentageRunMultiprocess([matches, your_ai_instance, opponent_ai_instance])
 
     #ログ出力
     total = 0
