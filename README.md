@@ -33,6 +33,20 @@ Requirements: Python >=3.9, Poetry >=1.1
 2. プロジェクトのルートディレクトリ直下で `poetry install` を実行
 3. 同ディレクトリ直下で `poetry shell` を実行し開發用仮想環境へ入る
 
+### コマンド実行例
+
+``` sh
+# Install Python >=3.9 if it doesn't exist
+$ which python
+$ which python3
+
+# Install Poetry >=1.1 if it doesn't exist
+$ which poetry
+
+$ poetry install
+$ poetry shell
+```
+
 作業終了後は `exit` で仮想環境から抜ける
 
 ## AI対戦方法 (開発用)
@@ -41,6 +55,26 @@ GitHub Actions上ではなくCLIから実行する方法
 
 `poetry run COMMAND` 、もしくは仮想環境に入った状態で `COMMAND` を実行する  
 詳しい実行方法は `poetry run ktuarto --help` もしくは https://github.com/Anminti/Ktuarto/blob/develop/.github/workflows/battle_between_AIs.yml の `Run Ktuarto` で実行しているコマンドを参照
+
+### コマンド実行例
+
+``` sh
+$ poetry shell
+$ ktuarto --help
+Usage: ktuarto [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  run
+$ ktuarto run --help
+Usage: ktuarto run [OPTIONS] YOUR_AI OPPONENT_AI
+
+Options:
+  --matches INTEGER  Number of matches (default: 1)
+  --help             Show this message and exit.
+```
 
 ## AI開発方法
 
