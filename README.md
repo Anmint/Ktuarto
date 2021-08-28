@@ -13,7 +13,7 @@ QuartoのAI実装、及びモンテカルロ法等の汎用的なアルゴリズ
 既にプロジェクト内に存在するAI同士で対戦する方法  
 
 1. [AI一覧](https://github.com/Anminti/Ktuarto/tree/develop/ktuarto/AI)の各ファイルから、対戦させたい2つのAIのクラス名を選択。名前を控えておく
-2. [GitHub Actionsのwarkflow一覧](https://github.com/Ktuarto/Ktuarto/actions)から `Buttle between AIs` を選択
+2. [GitHub Actionsのworkflow一覧](https://github.com/Ktuarto/Ktuarto/actions)から `Buttle between AIs` を選択
     ![Image0](/docs/images/README.md/image0.png)
 3. `Run workflow` をクリック
     ![Image1](/docs/images/README.md/image1.png)
