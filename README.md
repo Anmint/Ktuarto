@@ -28,8 +28,8 @@ QuartoのAI実装、及びモンテカルロ法等の汎用的なアルゴリズ
 
 Requirements: Python >=3.9, Poetry >=1.1
 
-1. Requirementsをインストール
-  - インストール方法は各パッケージの公式ドキュメント参照
+1. Requirementsをインストール  
+  インストール方法は各パッケージの公式ドキュメント参照
 2. プロジェクトのルートディレクトリ直下で `poetry install` を実行
 3. 同ディレクトリ直下で `poetry shell` を実行し開發用仮想環境へ入る
 
@@ -47,7 +47,7 @@ GitHub Actions上ではなくCLIから実行する方法
 新規AIは https://github.com/Anminti/Ktuarto/tree/develop/ktuarto/AI に設置する
 
 1. `base_ai.BaseAI` を継承したユニークな名前のclassを定義し、そのclassに `choice` メソッドと `put` メソッドを定義する  
-  - 各メソッドの返り値は既に設置されているAI参考
+  各メソッドの返り値は既に設置されているAI参考
 2. https://github.com/Anminti/Ktuarto/blob/develop/ktuarto/scripts/run.py に `from ..AI.{新AIを書いたファイル名} import {新AIのclass名}` を追記
 3. https://github.com/Anminti/Ktuarto/blob/develop/ktuarto/AI/__init__.py に  `from .{新AIを書いたファイル名} import {新AIのclass名}` を追記
 
