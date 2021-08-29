@@ -78,11 +78,11 @@ Options:
 
 ## AI開発方法
 
-新規AIは[/ktuarto/AI](/ktuarto/AI)に設置する
+新規AIは[`/ktuarto/AI`](/ktuarto/AI)に設置する
 
 1. `base_ai.BaseAI` を継承したユニークな名前のclassを定義し、そのclassに `choice` メソッドと `put` メソッドを定義する  
   各メソッドの返り値は既に設置されているAI参考
-2. [/ktuarto/scripts/run.py](/ktuarto/scripts/run.py)に `from ..AI.{新AIを書いたファイル名} import {新AIのclass名}` を追記
-3. [/ktuarto/AI/__init__.py](/ktuarto/AI/__init__.py)に  `from .{新AIを書いたファイル名} import {新AIのclass名}` を追記
+2. [`/ktuarto/scripts/run.py`](/ktuarto/scripts/run.py)に `from ..AI.{新AIを書いたファイル名} import {新AIのclass名}` を追記
+3. [`/ktuarto/AI/__init__.py`](/ktuarto/AI/__init__.py)に  `from .{新AIを書いたファイル名} import {新AIのclass名}` を追記
 
 以上の作業終了後、各種AI対戦方法により対戦実行が可能
