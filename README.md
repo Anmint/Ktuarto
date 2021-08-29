@@ -12,8 +12,8 @@ QuartoのAI実装、及びモンテカルロ法等の汎用的なアルゴリズ
 
 既にプロジェクト内に存在するAI同士で対戦する方法  
 
-1. [AI一覧](https://github.com/Anminti/Ktuarto/tree/develop/ktuarto/AI)の各ファイルから、対戦させたい2つのAIのクラス名を選択。名前を控えておく
-2. [GitHub Actionsのworkflow一覧](https://github.com/Ktuarto/Ktuarto/actions)から `Buttle between AIs` を選択
+1. [AI一覧](/ktuarto/AI)の各ファイルから、対戦させたい2つのAIのクラス名を選択。名前を控えておく
+2. [GitHub Actionsのworkflow一覧](../..//actions)から `Buttle between AIs` を選択
     ![Image0](/docs/images/README.md/image0.png)
 3. `Run workflow` をクリック
     ![Image1](/docs/images/README.md/image1.png)
@@ -54,7 +54,7 @@ $ poetry shell
 GitHub Actions上ではなくCLIから実行する方法
 
 `poetry run COMMAND` 、もしくは仮想環境に入った状態で `COMMAND` を実行する  
-詳しい実行方法は `poetry run ktuarto --help` もしくは https://github.com/Anminti/Ktuarto/blob/develop/.github/workflows/battle_between_AIs.yml の `Run Ktuarto` で実行しているコマンドを参照
+詳しい実行方法は `poetry run ktuarto --help` もしくは[GitHub Actionsの設定ファイル](/.github/workflows/battle_between_AIs.yml)の `Run Ktuarto` で実行しているコマンドを参照
 
 ### コマンド実行例
 
@@ -78,11 +78,11 @@ Options:
 
 ## AI開発方法
 
-新規AIは https://github.com/Anminti/Ktuarto/tree/develop/ktuarto/AI に設置する
+新規AIは[`/ktuarto/AI`](/ktuarto/AI)に設置する
 
 1. `base_ai.BaseAI` を継承したユニークな名前のclassを定義し、そのclassに `choice` メソッドと `put` メソッドを定義する  
   各メソッドの返り値は既に設置されているAI参考
-2. https://github.com/Anminti/Ktuarto/blob/develop/ktuarto/scripts/run.py に `from ..AI.{新AIを書いたファイル名} import {新AIのclass名}` を追記
-3. https://github.com/Anminti/Ktuarto/blob/develop/ktuarto/AI/__init__.py に  `from .{新AIを書いたファイル名} import {新AIのclass名}` を追記
+2. [`/ktuarto/scripts/run.py`](/ktuarto/scripts/run.py)に `from ..AI.{新AIを書いたファイル名} import {新AIのclass名}` を追記
+3. [`/ktuarto/AI/__init__.py`](/ktuarto/AI/__init__.py)に  `from .{新AIを書いたファイル名} import {新AIのclass名}` を追記
 
 以上の作業終了後、各種AI対戦方法により対戦実行が可能
