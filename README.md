@@ -14,7 +14,8 @@ QuartoのAI実装、及びモンテカルロ法等の汎用的なアルゴリズ
 
 1. GitHubにサインインをする
 1. GitHub Actionsの実行権限があることを確認する
-    ![Image1](/docs/images/README.md/image1.png) のように青いカラムが表示され「Run workflow」が選択可能であれば権限を持っている  
+    ![Image1](/docs/images/README.md/image1.png)  
+    上記のように青いカラムが表示され「Run workflow」が選択可能であれば権限を持っている  
     表示されない場合は権限を持っていない可能性があるため、リポジトリの管理者に連絡をする
 1. [AI一覧](/ktuarto/AI)の各ファイルから、対戦させたい2つのAIのクラス名を選択。名前を控えておく
 1. [GitHub Actionsのworkflow一覧](../..//actions)から `Buttle between AIs` を選択
@@ -24,15 +25,14 @@ QuartoのAI実装、及びモンテカルロ法等の汎用的なアルゴリズ
 1. 実行対象のBranch、1で控えた2つのAIの名前、試合回数を指定
 1. `Run workflow` をクリック
 1. F5等で画面を更新
-1. 作成されたタスクの実行終了を待つ
-    実行開始時間が直近のタスク横のアイコンが黄色であれば実行中
-    ![Image2](/docs/images/README.md/image2.png)
-    このように緑になれば実行完了
+1. 作成されたタスクの実行終了を待つ  
+    実行開始時間が直近のタスク横のアイコンが黄色であれば実行中  
+    ![Image2](/docs/images/README.md/image2.png)  
+    このように緑になれば実行完了  
     ![Image3](/docs/images/README.md/image3.png)
-1. 実行開始時間が直近のタスクをクリック
+1. 実行開始時間が直近のタスクをクリック  
     手順9でアイコンが黄色から緑になったものが対象のタスク
-1. 出力されたログから実行結果を確認
-1. `Buttle-Between-AIs' ボタンをクリック
+1. `Buttle-Between-AIs` ボタンをクリック
     ![Image4](/docs/images/README.md/image4.png)
 1. `Run Ktuarto` をクリックし実行ログを確認
     ![Image5](/docs/images/README.md/image5.png)
