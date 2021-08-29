@@ -12,17 +12,18 @@ QuartoのAI実装、及びモンテカルロ法等の汎用的なアルゴリズ
 
 既にプロジェクト内に存在するAI同士で対戦する方法  
 
+1. GitHubにサインインをする
 1. [AI一覧](/ktuarto/AI)の各ファイルから、対戦させたい2つのAIのクラス名を選択。名前を控えておく
-2. [GitHub Actionsのworkflow一覧](../..//actions)から `Buttle between AIs` を選択
+1. [GitHub Actionsのworkflow一覧](../..//actions)から `Buttle between AIs` を選択
     ![Image0](/docs/images/README.md/image0.png)
-3. `Run workflow` をクリック
+1. `Run workflow` をクリック
     ![Image1](/docs/images/README.md/image1.png)
-4. 実行対象のBranch、1で控えた2つのAIの名前、試合回数を指定
-5. `Run workflow` をクリック
-6. F5等で画面を更新
-7. 新規作成されたタスクの実行終了を待つ
-8. 新規作成されたタスクをクリック
-9. 出力されたログから実行結果を確認
+1. 実行対象のBranch、1で控えた2つのAIの名前、試合回数を指定
+1. `Run workflow` をクリック
+1. F5等で画面を更新
+1. 新規作成されたタスクの実行終了を待つ
+1. 新規作成されたタスクをクリック
+1. 出力されたログから実行結果を確認
 
 ## 開発環境構築方法
 
