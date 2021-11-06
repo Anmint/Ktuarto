@@ -43,10 +43,14 @@ def run(your_ai, opponent_ai, matches):
     win1 = 0
     win2 = 0
     draw = 0
+    elo1 = 0
+    elo2 = 0
     total += result['対戦回数：']
     win1 += result['AI1勝利数：']
     win2 += result['AI2勝利数：']
     draw += result['引き分け数：']
+    elo1 += result['AI1のELO：']
+    elo2 += result['AI2のELO：']
     util.p.print(str(result))
 
     util.p.print('')
@@ -55,4 +59,6 @@ def run(your_ai, opponent_ai, matches):
     util.p.print('全体AI1勝率：'+str(win1/total*100))
     util.p.print('全体AI2勝率：'+str(win2/total*100))
     util.p.print('全体引き分け率：'+str(draw/total*100))
+    util.p.print('AI1のELO：'+str(elo1))
+    util.p.print('AI2のELO：'+str(elo2))
     util.p.print('全体処理時間：'+str(time.time()-st))

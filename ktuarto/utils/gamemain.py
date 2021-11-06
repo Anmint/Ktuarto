@@ -180,7 +180,7 @@ def winningPercentageRun(gamenum, p0=None, p1=None):
         None:0,
     }
     scoreper = {}
-    elo = {1500, 1500}
+    elo = {player0:1500, player1:1500}
 
     for i in range(gamenum):
         #ゲーム実行
