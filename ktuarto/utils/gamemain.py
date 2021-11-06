@@ -1,4 +1,4 @@
-from . import board, box, piece, gameplayer, gameplayerinfo, util
+from . import board, box, piece, gameplayer, gameplayerinfo, util, rating
 
 import numpy as np
 import time
@@ -180,6 +180,7 @@ def winningPercentageRun(gamenum, p0=None, p1=None):
         None:0,
     }
     scoreper = {}
+    elo = {player0:1500, player1:1500}
 
     for i in range(gamenum):
         #ゲーム実行
@@ -191,8 +192,12 @@ def winningPercentageRun(gamenum, p0=None, p1=None):
         util.p.print('後攻 player1：'+str(player1))
         if (res == 0):
             util.p.print('勝利AI：'+str(player0))
+            elo[player0], elo[player1] = rating.calcEloRating(elo[player0], elo[player1], 1, 0)
         elif (res == 1):
             util.p.print('勝利AI：'+str(player1))
+            elo[player0], elo[player1] = rating.calcEloRating(elo[player0], elo[player1], 0, 1)
+        else:
+            elo[player0], elo[player1] = rating.calcEloRating(elo[player0], elo[player1], 0.5, 0.5)
         util.p.print('')
         
         #スコア加算
@@ -218,6 +223,8 @@ def winningPercentageRun(gamenum, p0=None, p1=None):
     util.p.print('AI1の勝率：'+str(scoreper[player0]))
     util.p.print('AI2の勝率：'+str(scoreper[player1]))
     util.p.print('引き分け率：'+str(scoreper[None   ]))
+    util.p.print('AI1のELO：'+str(elo[player0]))
+    util.p.print('AI2のELO：'+str(elo[player1]))
 
     playtime = time.time() - start
     util.p.print("処理時間：{0}".format(playtime)+"[sec]")
@@ -231,6 +238,8 @@ def winningPercentageRun(gamenum, p0=None, p1=None):
         'AI1の勝率：':scoreper[player0],
         'AI2の勝率：':scoreper[player1],
         '引き分け率：':scoreper[None   ],
+        'AI1のELO：':elo[player0],
+        'AI2のELO：':elo[player1],
         '処理時間：':playtime,
     }
     return result
