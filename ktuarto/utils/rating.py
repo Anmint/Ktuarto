@@ -49,7 +49,7 @@ def calcEloRating (PlayerAName, PlayerBName, winNumberPlayerA, winNumberPlayerB,
 
 def initElo(name):
     requests.post(
-            "http://localhost:3001/api/v1/ais",
+            "http://quarto.unigiri.net:3001/api/v1/ais",
             headers = headers,
             data = json.dumps({'name': name}),
             auth = basicAuth
@@ -57,7 +57,7 @@ def initElo(name):
 
 def getElo(name):
     response = requests.get(
-            f'http://localhost:3001/api/v1/ais/{name}',
+            f'http://quarto.unigiri.net:3001/api/v1/ais/{name}',
             headers = headers,
             auth = basicAuth
             )
@@ -65,7 +65,7 @@ def getElo(name):
 
 def updateElo(name, elo):
     requests.put(
-            f"http://localhost:3001/api/v1/ais/{name}",
+            f"http://quarto.unigiri.net:3001/api/v1/ais/{name}",
             headers = headers,
             data = json.dumps({'elo': elo}),
             auth = basicAuth
