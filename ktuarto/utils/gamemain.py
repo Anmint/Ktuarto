@@ -180,7 +180,7 @@ def winningPercentageRun(gamenum, p0=None, p1=None):
         None:0,
     }
     scoreper = {}
-    elo = {player0:1500, player1:1500}
+    elo = {player0: 0, player1: 0}
 
     for i in range(gamenum):
         #ゲーム実行
@@ -192,12 +192,12 @@ def winningPercentageRun(gamenum, p0=None, p1=None):
         util.p.print('後攻 player1：'+str(player1))
         if (res == 0):
             util.p.print('勝利AI：'+str(player0))
-            elo[player0], elo[player1] = rating.calcEloRating(elo[player0], elo[player1], 1, 0)
+            elo[player0], elo[player1] = rating.calcEloRating(player0.__class__.__name__, player1.__class__.__name__, 1, 0)
         elif (res == 1):
             util.p.print('勝利AI：'+str(player1))
-            elo[player0], elo[player1] = rating.calcEloRating(elo[player0], elo[player1], 0, 1)
+            elo[player0], elo[player1] = rating.calcEloRating(player0.__class__.__name__, player1.__class__.__name__, 0, 1)
         else:
-            elo[player0], elo[player1] = rating.calcEloRating(elo[player0], elo[player1], 0.5, 0.5)
+            elo[player0], elo[player1] = rating.calcEloRating(player0.__class__.__name__, player1.__class__.__name__, 0.5, 0.5)
         util.p.print('')
         
         #スコア加算
