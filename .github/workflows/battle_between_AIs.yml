@@ -14,6 +14,9 @@ on:
         description: "Number of matches"
         required: false 
         default: 1
+env:
+  BASIC_USER: ${{ secrets.BASIC_USER }}
+  BASIC_PASSWORD: ${{ secrets.BASIC_PASSWORD }}
 
 jobs:
   Buttle-Between-AIs:
@@ -31,8 +34,5 @@ jobs:
         run: |
           poetry install
       - name: Run Ktuarto
-        env:
-          BASIC_USER: ${{secrets.BASIC_USER}}
-          BASIC_PASSWORD: ${{secrets.BASIC_PASSWORD}}
         run: |
           poetry run ktuarto run ${{ github.event.inputs.your_ai }} ${{ github.event.inputs.opponent_ai }} --matches ${{ github.event.inputs.matches }}
