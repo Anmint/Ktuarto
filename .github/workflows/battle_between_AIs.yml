@@ -18,6 +18,8 @@ on:
 jobs:
   Buttle-Between-AIs:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: 'write'
     environment:
       name: BASIC_AUTH
     steps:
@@ -32,6 +34,13 @@ jobs:
       - name: Build Ktuarto
         run: |
           poetry install
+      - id: auth
+        uses: google-github-actions/auth@v0
+        with:
+          workload_identity_provider: 'projects/627953691048/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+          service_account: 'github-actions-service-account@quartobattlestation.iam.gserviceaccount.com'
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
       - name: Run Ktuarto
         env:
           BASIC_USER: ${{ secrets.BASIC_USER }}
