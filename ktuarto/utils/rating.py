@@ -2,16 +2,12 @@
 
 import os
 import json
-import requests
-from requests.auth import HTTPBasicAuth
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 from dotenv import load_dotenv
 
 load_dotenv()
-headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-        }
-basicAuth = HTTPBasicAuth(os.getenv('BASIC_USER'), os.getenv('BASIC_PASSWORD'))
 
 def calcEloRating (PlayerAName, PlayerBName, winNumberPlayerA, winNumberPlayerB, K=32):
     """calcEloRating (eloPlayerA, eloPlayerB, winNumberPlayerA, winNumberPlayerBw K=32)
@@ -29,10 +25,9 @@ def calcEloRating (PlayerAName, PlayerBName, winNumberPlayerA, winNumberPlayerB,
         (calcedEloPlayerA, calcedEloPlayerB): 各プレイヤーの試合後ELOレーティングをタプルで返します。
     """
 
-    initElo(PlayerAName)
-    initElo(PlayerBName)
-    eloPlayerA = getElo(PlayerAName)
-    eloPlayerB = getElo(PlayerBName)
+    client = getFirestoreClient()
+    eloPlayerA = getElo(client, PlayerAName)
+    eloPlayerB = getElo(client, PlayerBName)
 
     # winRateAtoBはAの予測勝率、winRateBtoAはBの予測勝率
     winRateAtoB = 1/(pow(10,(float(eloPlayerB) - float(eloPlayerA))/400) + 1)
@@ -42,31 +37,24 @@ def calcEloRating (PlayerAName, PlayerBName, winNumberPlayerA, winNumberPlayerB,
     newEloPlayerA = int(round(eloPlayerA + K * (winNumberPlayerA - gameNumber * winRateAtoB)))
     newEloPlayerB = int(round(eloPlayerB + K * (winNumberPlayerB - gameNumber * winRateBtoA)))
 
-    updateElo(PlayerAName, newEloPlayerA)
-    updateElo(PlayerBName, newEloPlayerB)
+    updateElo(client, PlayerAName, newEloPlayerA)
+    updateElo(client, PlayerBName, newEloPlayerB)
     
     return (newEloPlayerA,newEloPlayerB)
 
-def initElo(name):
-    requests.post(
-            "http://quarto.unigiri.net:3001/api/v1/ais",
-            headers = headers,
-            data = json.dumps({'name': name}),
-            auth = basicAuth
-            )
+def getFirestoreClient():
+    cred = credentials.ApplicationDefault()
+    firebase_admin.initialize_app(cred, {
+      'projectId': 'quartobattlestation'
+    })
+    return firestore.client()
 
-def getElo(name):
-    response = requests.get(
-            f'http://quarto.unigiri.net:3001/api/v1/ais/{name}',
-            headers = headers,
-            auth = basicAuth
-            )
-    return response.json()['ai']['elo']
+def getElo(client, name):
+    AI_data = client.collection(u'AIs').document(name).get()
+    if AI_data.exists:
+        return AI_data.to_dict()['ELO']
+    else:
+        return 1200
 
-def updateElo(name, elo):
-    requests.put(
-            f"http://quarto.unigiri.net:3001/api/v1/ais/{name}",
-            headers = headers,
-            data = json.dumps({'elo': elo}),
-            auth = basicAuth
-            )
+def updateElo(client, name, newELO):
+    client.collection(u'AIs').document(name).set({'ELO': newELO})
