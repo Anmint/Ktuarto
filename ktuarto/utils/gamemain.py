@@ -46,6 +46,7 @@ class GameMain:
         self.turn = 0
         self.winner = None
         self.turncounter = 0
+        self.gamerecord = []
 
     def run(self):
         #ゲームループ
@@ -62,6 +63,8 @@ class GameMain:
         else:
             util.p.print('Player'+str(self.winner)+'の勝利')
         
+        [print(i) for i in self.gamerecord]
+
         return self.winner
     
     def gameLoop(self):
@@ -70,6 +73,7 @@ class GameMain:
             self.putPhase()
             self.drawPutPos()
             self.drawBoard()
+            self.gamerecord.append((str(self.choicepiece.toNumList()), str(self.left)+','+str(self.top), self.call))
             self.turncounter += 1
             if self.gameEnd: return
         
