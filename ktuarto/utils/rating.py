@@ -2,8 +2,6 @@
 
 import os
 import json
-import firebase_admin
-from firebase_admin import credentials
 from firebase_admin import firestore
 from dotenv import load_dotenv
 
@@ -43,10 +41,6 @@ def calcEloRating (PlayerAName, PlayerBName, winNumberPlayerA, winNumberPlayerB,
     return (newEloPlayerA,newEloPlayerB)
 
 def getFirestoreClient():
-    cred = credentials.ApplicationDefault()
-    firebase_admin.initialize_app(cred, {
-      'projectId': 'quartobattlestation'
-    })
     return firestore.client()
 
 def getElo(client, name):
