@@ -20,8 +20,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: 'write'
-    environment:
-      name: BASIC_AUTH
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
@@ -42,8 +40,5 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v0
       - name: Run Ktuarto
-        env:
-          BASIC_USER: ${{ secrets.BASIC_USER }}
-          BASIC_PASSWORD: ${{ secrets.BASIC_PASSWORD }}
         run: |
           poetry run ktuarto run ${{ github.event.inputs.your_ai }} ${{ github.event.inputs.opponent_ai }} --matches ${{ github.event.inputs.matches }}
