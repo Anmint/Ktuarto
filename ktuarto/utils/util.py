@@ -109,4 +109,4 @@ class p:
     def printGameRecord(cls,gamerecord):
         for hand in gamerecord:
             quarto = "Quarto" if hand[2] == "Quarto" else ""
-            print("".join(hand[0]) + "(" + chr(hand[1][1] + 97) + str(4 - hand[1][0]) + ")" + quarto)
+            print("".join(hand[0].tolist()) + "(" + chr(hand[1][1] + 97) + str(4 - hand[1][0]) + ")" + quarto)
