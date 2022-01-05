@@ -104,3 +104,9 @@ class p:
             print(str, file=cls._file)
         print(str)
         #pass
+    
+    @classmethod
+    def printGameRecord(cls,gamerecord):
+        for hand in gamerecord:
+            quarto = "Quarto" if hand[2] == "Quarto" else ""
+            print("".join(hand[0]) + "(" + chr(hand[1][1] + 97) + str(4 - hand[1][0]) + ")" + quarto)

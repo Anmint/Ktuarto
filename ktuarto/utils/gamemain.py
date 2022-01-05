@@ -63,7 +63,7 @@ class GameMain:
         else:
             util.p.print('Player'+str(self.winner)+'の勝利')
         
-        [print(i) for i in self.gamerecord]
+        util.p.printGameRecord(self.gamerecord)
 
         return self.winner
     
@@ -73,7 +73,7 @@ class GameMain:
             self.putPhase()
             self.drawPutPos()
             self.drawBoard()
-            self.gamerecord.append((str(self.choicepiece.toNumList()), str(self.left)+','+str(self.top), self.call))
+            self.gamerecord.append((self.choicepiece.toNumList(), (self.left, self.top), self.call))
             self.turncounter += 1
             if self.gameEnd: return
         
