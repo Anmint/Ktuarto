@@ -2,6 +2,8 @@ from . import board, box, piece, gameplayer, gameplayerinfo, util, rating
 
 import numpy as np
 import time
+import firebase_admin
+from firebase_admin import credentials
 
 class GameMain:
     """
@@ -185,6 +187,11 @@ def winningPercentageRun(gamenum, p0=None, p1=None):
     }
     scoreper = {}
     elo = {player0: 0, player1: 0}
+
+    cred = credentials.ApplicationDefault()
+    firebase_admin.initialize_app(cred, {
+      'projectId': 'quartobattlestation'
+    })
 
     for i in range(gamenum):
         #ゲーム実行
