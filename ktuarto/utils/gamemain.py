@@ -1,9 +1,7 @@
-from . import board, box, piece, gameplayer, gameplayerinfo, util, rating
+from . import board, box, piece, gameplayer, gameplayerinfo, util, rating, firebase_client
 
 import numpy as np
 import time
-import firebase_admin
-from firebase_admin import credentials
 
 class GameMain:
     """
@@ -188,10 +186,7 @@ def winningPercentageRun(gamenum, p0=None, p1=None):
     scoreper = {}
     elo = {player0: 0, player1: 0}
 
-    cred = credentials.ApplicationDefault()
-    firebase_admin.initialize_app(cred, {
-      'projectId': 'quartobattlestation'
-    })
+    client = firebase_client.firebaseClient()
 
     for i in range(gamenum):
         #ゲーム実行
@@ -203,12 +198,12 @@ def winningPercentageRun(gamenum, p0=None, p1=None):
         util.p.print('後攻 player1：'+str(player1))
         if (res == 0):
             util.p.print('勝利AI：'+str(player0))
-            elo[player0], elo[player1] = rating.calcEloRating(player0.__class__.__name__, player1.__class__.__name__, 1, 0)
+            elo[player0], elo[player1] = rating.calcEloRating(player0.__class__.__name__, player1.__class__.__name__, 1, 0, client)
         elif (res == 1):
             util.p.print('勝利AI：'+str(player1))
-            elo[player0], elo[player1] = rating.calcEloRating(player0.__class__.__name__, player1.__class__.__name__, 0, 1)
+            elo[player0], elo[player1] = rating.calcEloRating(player0.__class__.__name__, player1.__class__.__name__, 0, 1, client)
         else:
-            elo[player0], elo[player1] = rating.calcEloRating(player0.__class__.__name__, player1.__class__.__name__, 0.5, 0.5)
+            elo[player0], elo[player1] = rating.calcEloRating(player0.__class__.__name__, player1.__class__.__name__, 0.5, 0.5, client)
         util.p.print('')
         
         #スコア加算
