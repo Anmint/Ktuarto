@@ -75,7 +75,7 @@ class GameMain:
             self.putPhase()
             self.drawPutPos()
             self.drawBoard()
-            self.gamerecord.append((self.choicepiece.toNumList(), (self.left, self.top), self.call))
+            self.gamerecord.append((self.choicepiece, (self.left, self.top), self.call))
             self.turncounter += 1
             if self.gameEnd: return
         
