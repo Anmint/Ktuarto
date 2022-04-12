@@ -1,13 +1,6 @@
 # coding: UTF-8
 
-import os
-import json
-from firebase_admin import firestore
-from dotenv import load_dotenv
-
-load_dotenv()
-
-def calcEloRating (PlayerAName, PlayerBName, winNumberPlayerA, winNumberPlayerB, K=32):
+def calcEloRating (PlayerAName, PlayerBName, winNumberPlayerA, winNumberPlayerB, firebaseClient, K=32):
     """calcEloRating (eloPlayerA, eloPlayerB, winNumberPlayerA, winNumberPlayerBw K=32)
 
     ELOレーティングを計算します。PlayerAとPlayerBについて同時に算出します。
@@ -23,9 +16,8 @@ def calcEloRating (PlayerAName, PlayerBName, winNumberPlayerA, winNumberPlayerB,
         (calcedEloPlayerA, calcedEloPlayerB): 各プレイヤーの試合後ELOレーティングをタプルで返します。
     """
 
-    client = getFirestoreClient()
-    eloPlayerA = getElo(client, PlayerAName)
-    eloPlayerB = getElo(client, PlayerBName)
+    eloPlayerA = firebaseClient.get_elo(PlayerAName)
+    eloPlayerB = firebaseClient.get_elo(PlayerBName)
 
     # winRateAtoBはAの予測勝率、winRateBtoAはBの予測勝率
     winRateAtoB = 1/(pow(10,(float(eloPlayerB) - float(eloPlayerA))/400) + 1)
@@ -35,20 +27,7 @@ def calcEloRating (PlayerAName, PlayerBName, winNumberPlayerA, winNumberPlayerB,
     newEloPlayerA = int(round(eloPlayerA + K * (winNumberPlayerA - gameNumber * winRateAtoB)))
     newEloPlayerB = int(round(eloPlayerB + K * (winNumberPlayerB - gameNumber * winRateBtoA)))
 
-    updateElo(client, PlayerAName, newEloPlayerA)
-    updateElo(client, PlayerBName, newEloPlayerB)
+    firebaseClient.update_elo(PlayerAName, newEloPlayerA)
+    firebaseClient.update_elo(PlayerBName, newEloPlayerB)
     
     return (newEloPlayerA,newEloPlayerB)
-
-def getFirestoreClient():
-    return firestore.client()
-
-def getElo(client, name):
-    AI_data = client.collection(u'AIs').document(name).get()
-    if AI_data.exists:
-        return AI_data.to_dict()['ELO']
-    else:
-        return 1200
-
-def updateElo(client, name, newELO):
-    client.collection(u'AIs').document(name).set({'ELO': newELO})
