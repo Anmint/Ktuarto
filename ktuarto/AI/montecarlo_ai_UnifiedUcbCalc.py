@@ -6,7 +6,7 @@ import time
 
 class Parameter:
     def __init__(self):
-        self.playoutTimelimit = 6   #プレイアウトの時間制限
+        self.playoutTimelimit = 1   #プレイアウトの時間制限
         self.ucb1_c = 2.0           #ucb1のc定数
         self.ucb1_fpu = 100         #fpu値
         self.playoutDepthBorder = 4 #プレイアウトをさらに深くする閾値   -1はチェックしない
