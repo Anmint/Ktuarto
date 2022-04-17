@@ -11,6 +11,19 @@ from ..utils import gamemain, util
 from ..AI.sample_ai import SampleAi
 from ..AI.random_ai import RandomAi, RandomAi2, RandomAi3
 from ..AI.montecarlo_ai import Montecarlo
+from ..AI.montecarlo_c_0 import MontecarloC0
+from ..AI.montecarlo_c_01 import MontecarloC01
+from ..AI.montecarlo_c_02 import MontecarloC02
+from ..AI.montecarlo_c_03 import MontecarloC03
+from ..AI.montecarlo_c_04 import MontecarloC04
+from ..AI.montecarlo_c_05 import MontecarloC05
+from ..AI.montecarlo_c_06 import MontecarloC06
+from ..AI.montecarlo_c_07 import MontecarloC07
+from ..AI.montecarlo_c_08 import MontecarloC08
+from ..AI.montecarlo_c_09 import MontecarloC09
+from ..AI.montecarlo_c_1 import MontecarloC1
+from ..AI.montecarlo_deeper import MontecarloDeeper
+from ..AI.montecarlo_shallower import MontecarloShallower
 from ..AI.montecarlo_choose_diagonal_lines_first import MontecarloChooseDiagonalLinesFirst
 from ..AI.montecarlo_choose_places_other_than_diagonal_lines_first import MontecarloChoosePlacesOtherThanGiagonalLinesFirst
 
