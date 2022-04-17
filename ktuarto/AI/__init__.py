@@ -16,3 +16,9 @@ from .montecarlo_c_09 import MontecarloC09
 from .montecarlo_c_1 import MontecarloC1
 from .montecarlo_deeper import MontecarloDeeper
 from .montecarlo_shallower import MontecarloShallower
+from .montecarlo_ai_PrioritizedDraw import MontecarloPrioritizedDraw
+from .montecarlo_ai_PrioritizedDrawC1 import MontecarloPrioritizedDrawC1
+from .montecarlo_ai_PrioritizedDrawC3 import MontecarloPrioritizedDrawC3
+from .montecarlo_ai_UnifiedUcbCalc import MontecarloUnifiedUcbCalc
+from .montecarlo_ai_UnifiedUcbCalcC1 import MontecarloUnifiedUcbCalcC1
+from .montecarlo_ai_UnifiedUcbCalcC3 import MontecarloUnifiedUcbCalcC3
