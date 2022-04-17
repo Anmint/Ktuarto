@@ -1,0 +1,44 @@
+name: Buttle between AIs
+on:
+  workflow_dispatch:
+    inputs:
+      your_ai:
+        description: 'Your AI'
+        required: true
+        default: 'RandomAi'
+      opponent_ai:
+        description: "Opponent AI"
+        required: true
+        default: 'RandomAi2'
+      matches:
+        description: "Number of matches"
+        required: false 
+        default: 1
+
+jobs:
+  Buttle-Between-AIs:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: 'write'
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Setup Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+      - name: Build Ktuarto
+        run: |
+          poetry install
+      - id: auth
+        uses: google-github-actions/auth@v0
+        with:
+          workload_identity_provider: 'projects/627953691048/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+          service_account: 'github-actions-service-account@quartobattlestation.iam.gserviceaccount.com'
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+      - name: Run Ktuarto
+        run: |
+          poetry run ktuarto run ${{ github.event.inputs.your_ai }} ${{ github.event.inputs.opponent_ai }} --matches ${{ github.event.inputs.matches }}

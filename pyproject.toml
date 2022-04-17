@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "ktuarto"
+version = "0.1.0"
+description = ""
+authors = ["Unigiri Unini <me@unigiri.net>"]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.11"
+numpy = "^1.21.2"
+click = "^8.0.1"
+python-dotenv = "^0.19.2"
+requests = "^2.26.0"
+firebase-admin = "^5.2.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+ktuarto = "ktuarto.scripts.run:cli"
