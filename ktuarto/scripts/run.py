@@ -14,7 +14,11 @@ from ..AI.montecarlo_ai import Montecarlo
 from ..AI.montecarlo_choose_diagonal_lines_first import MontecarloChooseDiagonalLinesFirst
 from ..AI.montecarlo_choose_places_other_than_diagonal_lines_first import MontecarloChoosePlacesOtherThanGiagonalLinesFirst
 from ..AI.montecarlo_ai_PrioritizedDraw import MontecarloPrioritizedDraw
+from ..AI.montecarlo_ai_PrioritizedDrawC1 import MontecarloPrioritizedDrawC1
+from ..AI.montecarlo_ai_PrioritizedDrawC3 import MontecarloPrioritizedDrawC3
 from ..AI.montecarlo_ai_UnifiedUcbCalc import MontecarloUnifiedUcbCalc
+from ..AI.montecarlo_ai_UnifiedUcbCalcC1 import MontecarloUnifiedUcbCalcC1
+from ..AI.montecarlo_ai_UnifiedUcbCalcC3 import MontecarloUnifiedUcbCalcC3
 
 import click
 import sys
