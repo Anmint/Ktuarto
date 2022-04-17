@@ -13,6 +13,8 @@ from ..AI.random_ai import RandomAi, RandomAi2, RandomAi3
 from ..AI.montecarlo_ai import Montecarlo
 from ..AI.montecarlo_choose_diagonal_lines_first import MontecarloChooseDiagonalLinesFirst
 from ..AI.montecarlo_choose_places_other_than_diagonal_lines_first import MontecarloChoosePlacesOtherThanGiagonalLinesFirst
+from ..AI.montecarlo_ai_PrioritizedDraw import MontecarlPrioritizedDraw
+from ..AI.montecarlo_ai_UnifiedUcbCalc import MontecarloUnifiedUcbCalc
 
 import click
 import sys
