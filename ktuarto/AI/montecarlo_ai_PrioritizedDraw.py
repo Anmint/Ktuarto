@@ -6,7 +6,7 @@ import time
 
 class Parameter:
     def __init__(self):
-        self.playoutTimelimit = 6   #プレイアウトの時間制限
+        self.playoutTimelimit = 1   #プレイアウトの時間制限
         self.ucb1_c = 2.0           #ucb1のc定数
         self.ucb1_fpu = 100         #fpu値
         self.playoutDepthBorder = 4 #プレイアウトをさらに深くする閾値   -1はチェックしない
@@ -15,7 +15,7 @@ class Parameter:
         #self.putCgt = 0
         #self.choiceCgt = 0
 
-class Montecarlo(base_ai.BaseAi):
+class MontecarlPrioritizedDraw(base_ai.BaseAi):
     """
     ゲーム木を生成するクラス
     内容は適当な値を返す処理を記述

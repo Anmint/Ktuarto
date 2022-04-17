@@ -15,7 +15,7 @@ class Parameter:
         #self.putCgt = 0
         #self.choiceCgt = 0
 
-class Montecarlo(base_ai.BaseAi):
+class MontecarloUnifiedUcbCalc(base_ai.BaseAi):
     """
     ゲーム木を生成するクラス
     内容は適当な値を返す処理を記述
